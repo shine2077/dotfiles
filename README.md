@@ -33,19 +33,13 @@ You would then create a dotfiles subdirectory and move all the files there:
 
 Then, perform the following commands:
 ```shell
-
-
-```
 $ cd ~/dotfiles
 $ stow zsh
 $ stow kitty
 $ stow nvim
 $ stow tmux
-
 ```
 
-
-```
 And, voila, all your config files (well, symbolic links to them) are all in the correct place, however disorganized that might be, while the actual files are all neatly organized in your dotfiles directory, which is easily turned into a VCS repo. One handy thing is that if you use multiple computers, which may not have the same software installed on them, you can pick and choose which configurations to install when you need them. All of your dotfiles are always available in your dotfiles directory, but if you don’t need the configuration for one program, you simply don’t Stow it and thus it does not clutter your home directory.
 
 ## deploy on new machine
