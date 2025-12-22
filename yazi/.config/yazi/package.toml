@@ -8,12 +8,5 @@ use = "yazi-rs/plugins:full-border"
 rev = "19dc890"
 hash = "3996fc74044bc44144b323686f887e1"
 
-[[flavor.deps]]
-use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "fc8eeaa"
-hash = ""
-
-[[flavor.deps]]
-use = "bennyyip/gruvbox-dark"
-rev = "b4cc9f2"
-hash = ""
+[flavor]
+deps = []
