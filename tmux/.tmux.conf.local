@@ -351,7 +351,7 @@ tmux_conf_theme_clock_style="24"
 #   - false (default)
 #   - disabled
 # on Linux, this requires xsel, xclip or wl-copy
-tmux_conf_copy_to_os_clipboard=false
+tmux_conf_copy_to_os_clipboard=true
 
 
 # -- user customizations -------------------------------------------------------
@@ -448,6 +448,13 @@ set -g @tmux2k-show-powerline true
 
 # set session icon, accpets: `session`, 'window`, or any string
 set -g @tmux2k-session-icon " #S" # `#W` for window name
+
+# set the left and right plugin sections
+set -g @tmux2k-left-plugins "session"
+set -g @tmux2k-right-plugins "cpu ram battery network"
+
+# contorl refresh rate, applies to bandwidth, ping
+set -g @tmux2k-refresh-rate 5
 # -- custom variables ----------------------------------------------------------
 
 # to define a custom #{foo} variable, define a POSIX shell function between the
