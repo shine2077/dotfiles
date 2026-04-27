@@ -442,6 +442,7 @@ set -g @tmux2k-left-sep "\uE0B4"
 set -g @tmux2k-right-sep "\uE0B6"  # alternate right status bar sep
 set -g @tmux2k-window-list-left-sep "\uE0B6"
 set -g @tmux2k-window-list-right-sep "\uE0B4" # alternate window list right sep
+set -g @tmux2k-window-list-alignment left
 
 # to not show powerline
 set -g @tmux2k-show-powerline true
