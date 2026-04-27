@@ -105,14 +105,33 @@ fi
 source ${ZIM_HOME}/init.zsh
 # }}} End configuration added by Zim Framework install
 
-export PATH=$PATH:/usr/local/go/bin
+path_append_if_dir() {
+  [[ -d "$1" ]] || return 0
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) export PATH="${PATH}:$1" ;;
+  esac
+}
+
+path_prepend_if_dir() {
+  [[ -d "$1" ]] || return 0
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) export PATH="$1:${PATH}" ;;
+  esac
+}
+
+path_append_if_dir /usr/local/go/bin
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias docker-compose="docker compose"
 
-export PATH="$PATH:/opt/nvim/bin:/opt/qt-creator/bin:/home/sun/app/cmake-3.30.6-linux-x86_64/bin:/opt/miniconda3/bin"
+path_append_if_dir /opt/nvim/bin
+path_append_if_dir /opt/qt-creator/bin
+path_append_if_dir /home/sun/app/cmake-3.30.6-linux-x86_64/bin
+path_append_if_dir /opt/miniconda3/bin
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -125,9 +144,13 @@ function y() {
 
 export EDITOR="nvim"
 
-eval "$(starship init zsh)"
+if (( ${+commands[starship]} )); then
+  eval "$(starship init zsh)"
+fi
 
-eval "$(zoxide init zsh)"
+if (( ${+commands[zoxide]} )); then
+  eval "$(zoxide init zsh)"
+fi
 
 # pnpm
 export PNPM_HOME="/home/sun/.local/share/pnpm"
@@ -138,7 +161,7 @@ esac
 # pnpm end
 
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-export PATH="$JAVA_HOME/bin:$PATH"
+path_prepend_if_dir "$JAVA_HOME/bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -155,4 +178,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export PATH="/home/sun/.dotnet:$PATH"
+path_prepend_if_dir /home/sun/.dotnet
+path_prepend_if_dir /home/sun/app/7z
+path_prepend_if_dir "$HOME/.local/bin"
+alias docker=podman
