@@ -1,9 +1,14 @@
--- 在 lua/plugins/jdtls.lua 中
 return {
   "mfussenegger/nvim-jdtls",
   opts = function(_, opts)
-    -- 将 lombok 路径加入 jdtls 启动命令
-    local lombok_path = "/home/sun/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar"
-    table.insert(opts.cmd, "--jvm-arg=-javaagent:" .. lombok_path)
+    local lombok_pattern = vim.fn.expand("~/.m2/repository/org/projectlombok/lombok/*/lombok-*.jar")
+    local matches = vim.fn.glob(lombok_pattern, false, true)
+
+    if #matches == 0 then
+      return
+    end
+
+    table.sort(matches)
+    table.insert(opts.cmd, "--jvm-arg=-javaagent:" .. matches[#matches])
   end,
 }
