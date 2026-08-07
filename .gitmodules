@@ -1,3 +1,0 @@
-[submodule "yazi/.config/yazi/plugins/starship.yazi"]
-	path = yazi/.config/yazi/plugins/starship.yazi
-	url = https://github.com/Rolv-Apneseth/starship.yazi

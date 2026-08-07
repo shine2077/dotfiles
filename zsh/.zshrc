@@ -137,9 +137,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-export PATH="$JAVA_HOME/bin:$PATH"
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -156,3 +153,20 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export PATH="/home/sun/.dotnet:$PATH"
+export ROS_DOMAIN_ID=0
+
+export LD_LIBRARY_PATH="/usr/lib/wsl/lib:$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
+
+
+export PATH="$PATH:/usr/local/cuda-11/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-11.7/lib64"
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/sun/.local/bin:$PATH"
+
+# kimi-code
+export PATH="/home/sun/.kimi-code/bin:$PATH"
+
+export ROS_LOCALHOST_ONLY=1
